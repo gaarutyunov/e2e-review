@@ -1,0 +1,26 @@
+{
+  "name": "e2e-review-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "e2e"
+  ],
+  "scripts": {
+    "build:shared": "npm run build -w @e2e-review/shared",
+    "build:reporter": "npm run build -w @e2e-review/reporter",
+    "build:review": "npm run build -w @e2e-review/review",
+    "build:server": "npm run build -w @e2e-review/server",
+    "build": "npm run build:shared && npm run build:reporter && npm run build:review && npm run build:server",
+    "dev:demo": "npm run dev -w @e2e-review/demo",
+    "dev:review": "npm run dev -w @e2e-review/review",
+    "test:e2e": "npm run test -w @e2e-review/e2e",
+    "serve": "node packages/server/dist/cli.js serve",
+    "typecheck": "tsc -b"
+  }
+}

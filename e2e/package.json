@@ -1,0 +1,22 @@
+{
+  "name": "@e2e-review/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "bddgen": "bddgen",
+    "test": "bddgen && playwright test",
+    "test:headed": "bddgen && playwright test --headed",
+    "show-report": "playwright show-report"
+  },
+  "dependencies": {
+    "@e2e-review/demo": "*",
+    "@e2e-review/reporter": "*",
+    "@e2e-review/shared": "*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "playwright-bdd": "^9.2.0",
+    "typescript": "^5.9.3"
+  }
+}
