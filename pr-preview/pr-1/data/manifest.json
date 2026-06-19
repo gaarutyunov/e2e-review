@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-19T05:50:21.734Z",
+  "generatedAt": "2026-06-19T06:32:41.965Z",
   "runs": [
     {
-      "id": "run-1781848210138",
-      "createdAt": "2026-06-19T05:50:10.138Z",
+      "id": "run-1781850750197",
+      "createdAt": "2026-06-19T06:32:30.197Z",
       "summary": {
         "total": 5,
         "passed": 4,
@@ -11,11 +11,11 @@
         "skipped": 0
       },
       "git": {
-        "sha": "4b91953f1385c6a35da5c33ce5f186eab4fcb1a0",
+        "sha": "744be24e2665bc481155c91395d97f10320a92e4",
         "branch": "1/merge",
-        "commitUrl": "https://github.com/gaarutyunov/e2e-review/commit/4b91953f1385c6a35da5c33ce5f186eab4fcb1a0"
+        "commitUrl": "https://github.com/gaarutyunov/e2e-review/commit/744be24e2665bc481155c91395d97f10320a92e4"
       },
-      "reportPath": "run-1781848210138/run.json"
+      "reportPath": "run-1781850750197/run.json"
     }
   ]
 }
