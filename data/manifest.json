@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-06-19T08:15:26.254Z",
+  "runs": [
+    {
+      "id": "run-1781856914027",
+      "createdAt": "2026-06-19T08:15:14.026Z",
+      "summary": {
+        "total": 5,
+        "passed": 4,
+        "failed": 1,
+        "skipped": 0
+      },
+      "git": {
+        "sha": "a9f314fda71d88cdc518281cc03250cfc4ea22bf",
+        "branch": "main",
+        "commitUrl": "https://github.com/gaarutyunov/e2e-review/commit/a9f314fda71d88cdc518281cc03250cfc4ea22bf"
+      },
+      "reportPath": "run-1781856914027/run.json"
+    }
+  ]
+}
