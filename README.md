@@ -45,7 +45,13 @@ fixture (`e2e/fixtures.ts`) records that exact wall-clock moment via
 (`packages/reporter`) then expresses every Gherkin step's start/end as an offset
 relative to that t0 (`step.startTime − videoStart`). Those offsets land in
 `run.json`; the review UI uses them to seek the video and to highlight the
-active step on every `timeupdate`.
+active step on every `timeupdate`, and renders them as a proportional timeline
+track under the video.
+
+Playwright's webm recordings have no seek index, so browsers report
+`duration === Infinity` and refuse to seek. The reporter therefore parses the
+real duration out of the webm container and bakes it into `run.json`, and the
+player applies a "seek past the end" unlock so the video becomes seekable.
 
 ## Quick start
 

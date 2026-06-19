@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Comment, RunReport, Scenario } from '@e2e-review/shared';
 import { StepTimeline } from './StepTimeline';
+import { VideoTimeline } from './VideoTimeline';
 import { CommentsPanel } from './CommentsPanel';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -17,14 +18,52 @@ interface Props {
 
 export function ScenarioView({ run, scenario, comments, onAddComment, onResolveComment }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const unlockingRef = useRef(false);
   const [currentMs, setCurrentMs] = useState(0);
   const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
+
+  // Authoritative duration: the reporter bakes it in (Playwright webm files
+  // don't expose it to the browser); fall back to the last step's end.
+  const lastStepEnd = scenario.steps.length
+    ? scenario.steps[scenario.steps.length - 1].videoOffsetEndMs
+    : 0;
+  const [durationMs, setDurationMs] = useState(scenario.video?.durationMs ?? lastStepEnd);
 
   // Reset transient view state when the scenario changes.
   useEffect(() => {
     setCurrentMs(0);
     setSelectedStepIndex(null);
-  }, [scenario.id]);
+    setDurationMs(scenario.video?.durationMs ?? lastStepEnd);
+  }, [scenario.id, scenario.video?.durationMs, lastStepEnd]);
+
+  // Playwright webm has no seek index, so Chrome reports duration === Infinity
+  // and refuses to seek. Force it to scan the file by seeking far past the end;
+  // once a finite duration appears, reset to 0 and seeking works.
+  function handleLoadedMetadata() {
+    const v = videoRef.current;
+    if (!v) return;
+    if (!Number.isFinite(v.duration) || v.duration === 0) {
+      unlockingRef.current = true;
+      const onUpdate = () => {
+        if (Number.isFinite(v.duration) && v.duration > 0) {
+          v.removeEventListener('timeupdate', onUpdate);
+          unlockingRef.current = false;
+          v.currentTime = 0;
+          setDurationMs(Math.round(v.duration * 1000));
+        }
+      };
+      v.addEventListener('timeupdate', onUpdate);
+      v.currentTime = 1e7;
+    } else {
+      setDurationMs(Math.round(v.duration * 1000));
+    }
+  }
+
+  function seekTo(ms: number) {
+    const v = videoRef.current;
+    if (v) v.currentTime = ms / 1000;
+    setCurrentMs(ms);
+  }
 
   // The active step is the last one whose start offset has been reached.
   const activeIndex = useMemo(() => {
@@ -44,14 +83,10 @@ export function ScenarioView({ run, scenario, comments, onAddComment, onResolveC
     return counts;
   }, [comments, scenario.steps.length]);
 
-  function seekTo(stepIndex: number) {
+  function selectStep(stepIndex: number) {
     setSelectedStepIndex(stepIndex);
     const step = scenario.steps[stepIndex];
-    const video = videoRef.current;
-    if (video && step) {
-      video.currentTime = step.videoOffsetStartMs / 1000;
-      setCurrentMs(step.videoOffsetStartMs);
-    }
+    if (step) seekTo(step.videoOffsetStartMs);
   }
 
   return (
@@ -67,16 +102,31 @@ export function ScenarioView({ run, scenario, comments, onAddComment, onResolveC
       </div>
 
       {scenario.video?.path ? (
-        <video
-          ref={videoRef}
-          data-testid="scenario-video"
-          src={scenario.video.path}
-          controls
-          playsInline
-          className="w-full rounded-lg border bg-black aspect-video"
-          onTimeUpdate={(e) => setCurrentMs(e.currentTarget.currentTime * 1000)}
-          onSeeked={(e) => setCurrentMs(e.currentTarget.currentTime * 1000)}
-        />
+        <div className="space-y-2">
+          <video
+            ref={videoRef}
+            data-testid="scenario-video"
+            src={scenario.video.path}
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full rounded-lg border bg-black aspect-video"
+            onLoadedMetadata={handleLoadedMetadata}
+            onTimeUpdate={(e) => {
+              if (!unlockingRef.current) setCurrentMs(e.currentTarget.currentTime * 1000);
+            }}
+            onSeeked={(e) => {
+              if (!unlockingRef.current) setCurrentMs(e.currentTarget.currentTime * 1000);
+            }}
+          />
+          <VideoTimeline
+            steps={scenario.steps}
+            durationMs={durationMs}
+            currentMs={currentMs}
+            activeIndex={activeIndex}
+            onSeek={seekTo}
+          />
+        </div>
       ) : (
         <div className="flex aspect-video w-full flex-col items-center justify-center gap-2 rounded-lg border bg-muted text-muted-foreground">
           <VideoOff className="h-8 w-8" />
@@ -103,7 +153,7 @@ export function ScenarioView({ run, scenario, comments, onAddComment, onResolveC
             activeIndex={activeIndex}
             selectedIndex={selectedStepIndex}
             commentCounts={commentCounts}
-            onSelect={seekTo}
+            onSelect={selectStep}
           />
           <button
             type="button"

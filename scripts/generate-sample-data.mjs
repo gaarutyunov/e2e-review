@@ -36,6 +36,7 @@ const features = [
         status: 'passed',
         durationMs: 1850,
         startTime: new Date().toISOString(),
+        video: { path: 'missing/video.webm', durationMs: 2200 },
         steps: [
           step('Given', 'the login page is open', 0, 420),
           step('When', 'I enter the email "user@acme.test"', 420, 180),

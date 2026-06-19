@@ -109,7 +109,7 @@ export default class E2eReviewReporter implements Reporter {
       const ext = path.extname(videoAtt.path) || '.webm';
       const dest = path.join(scenarioDir, `video${ext}`);
       copyFileSync(videoAtt.path, dest);
-      video = { path: `${folder}/video${ext}` };
+      video = { path: `${folder}/video${ext}`, durationMs: parseWebmDurationMs(videoAtt.path) };
     }
 
     // Copy failure screenshots and attach them to the failed step (if any).
@@ -273,6 +273,40 @@ function readGit(): GitMeta {
 function safeGit(cmd: string): string | undefined {
   try {
     return execSync(cmd, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * Extracts the duration (ms) from a Matroska/WebM file by reading the
+ * `TimecodeScale` (0x2AD7B1) and `Duration` (0x4489) elements from the Segment
+ * Info. Playwright webm files lack a seek index, so the browser cannot
+ * determine duration on its own; baking it into the report lets the UI scale
+ * its timeline correctly. Returns undefined if it can't be parsed.
+ */
+function parseWebmDurationMs(filePath: string): number | undefined {
+  try {
+    const buf = readFileSync(filePath);
+
+    // TimecodeScale (ns per tick); default 1,000,000 (i.e. ticks are ms).
+    let timecodeScale = 1_000_000;
+    const tcsId = buf.indexOf(Buffer.from([0x2a, 0xd7, 0xb1]));
+    if (tcsId >= 0) {
+      const sizePos = tcsId + 3;
+      const size = buf[sizePos] & 0x7f; // single-byte data-size vint
+      timecodeScale = buf.readUIntBE(sizePos + 1, Math.min(size, 6));
+    }
+
+    // Duration: a float, expressed in TimecodeScale ticks.
+    const durId = buf.indexOf(Buffer.from([0x44, 0x89]));
+    if (durId < 0) return undefined;
+    const sizePos = durId + 2;
+    const size = buf[sizePos] & 0x7f;
+    const dataPos = sizePos + 1;
+    const ticks = size === 4 ? buf.readFloatBE(dataPos) : buf.readDoubleBE(dataPos);
+    if (!Number.isFinite(ticks) || ticks <= 0) return undefined;
+    return Math.round((ticks * timecodeScale) / 1_000_000);
   } catch {
     return undefined;
   }
