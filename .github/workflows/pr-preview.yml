@@ -1,0 +1,66 @@
+name: PR preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+# Deploy a per-PR preview into gh-pages/pr-preview/pr-<N>/ and comment the URL.
+# Uses the `pull_request` trigger (not pull_request_target) so untrusted fork
+# code never runs with write credentials.
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        if: github.event.action != 'closed'
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        run: npm ci
+
+      - name: Build shared packages
+        if: github.event.action != 'closed'
+        run: npm run build:shared && npm run build:reporter
+
+      - name: Install Playwright browsers
+        if: github.event.action != 'closed'
+        run: npx playwright install --with-deps chromium
+
+      - name: Run e2e tests (records videos + run report)
+        if: github.event.action != 'closed'
+        continue-on-error: true
+        run: npm run test:e2e
+
+      - name: Bundle test results into the review app
+        if: github.event.action != 'closed'
+        run: |
+          mkdir -p apps/review/public/data
+          cp -r e2e-results/* apps/review/public/data/ 2>/dev/null || true
+
+      - name: Build review app for the preview path
+        if: github.event.action != 'closed'
+        run: npm run build:review
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.number }}/
+          VITE_DATA_MODE: static
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: apps/review/dist
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview

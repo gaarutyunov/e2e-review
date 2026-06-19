@@ -1,0 +1,26 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Playwright / e2e
+e2e/test-results/
+e2e/playwright-report/
+e2e/.bdd/
+e2e/.features-gen/
+blob-report/
+playwright/.cache/
+
+# Generated run reports (bundled into the review build by CI)
+e2e-results/
+
+# Review app: data copied in at build time
+apps/review/public/data/
+
+# Server runtime data
+packages/server/data/
+
+# Env / misc
+.env
+.env.local
+.DS_Store
+*.log

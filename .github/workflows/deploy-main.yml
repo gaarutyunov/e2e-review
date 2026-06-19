@@ -1,0 +1,70 @@
+name: Deploy review to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Push the built site to the gh-pages branch. PR previews live in the same
+# branch under pr-preview/, so production must not delete them.
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-production
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared packages
+        run: npm run build:shared && npm run build:reporter
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run e2e tests (records videos + run report)
+        # The "locked account" scenario fails on purpose so the review app always
+        # has a failing run to inspect; don't let it block the deploy.
+        continue-on-error: true
+        run: npm run test:e2e
+
+      - name: Bundle test results into the review app
+        run: |
+          mkdir -p apps/review/public/data
+          cp -r e2e-results/* apps/review/public/data/ 2>/dev/null || true
+
+      - name: Build review app
+        run: npm run build:review
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+          VITE_DATA_MODE: static
+
+      - name: Upload Playwright report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/playwright-report/
+          retention-days: 14
+
+      - name: Deploy to gh-pages (production, keeping PR previews)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: apps/review/dist
+          clean: true
+          clean-exclude: |
+            pr-preview/
