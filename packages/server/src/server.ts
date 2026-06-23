@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { RunStore, CommentStore } from './store.js';
 import { buildMcpServer } from './mcp.js';
-import type { NewComment } from '@e2e-review/shared';
+import type { NewComment } from '@gaarutyunov/e2e-review-shared';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

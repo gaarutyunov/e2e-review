@@ -1,4 +1,4 @@
-import type { Comment, NewComment } from '@e2e-review/shared';
+import type { Comment, NewComment } from '@gaarutyunov/e2e-review-shared';
 
 const STORAGE_KEY = 'e2e-review:comments';
 

@@ -1,4 +1,4 @@
-import type { RunReport, ManifestEntry, Comment, NewComment } from '@e2e-review/shared';
+import type { RunReport, ManifestEntry, Comment, NewComment } from '@gaarutyunov/e2e-review-shared';
 import type { DataSource } from './types';
 import { localCommentStore } from './localComments';
 

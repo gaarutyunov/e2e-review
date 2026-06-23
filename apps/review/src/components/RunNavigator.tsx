@@ -1,4 +1,4 @@
-import type { ManifestEntry, RunReport } from '@e2e-review/shared';
+import type { ManifestEntry, RunReport } from '@gaarutyunov/e2e-review-shared';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/format';

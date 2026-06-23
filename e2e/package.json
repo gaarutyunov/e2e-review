@@ -1,5 +1,5 @@
 {
-  "name": "@e2e-review/e2e",
+  "name": "@gaarutyunov/e2e-review-e2e",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,9 +10,9 @@
     "show-report": "playwright show-report"
   },
   "dependencies": {
-    "@e2e-review/demo": "*",
-    "@e2e-review/reporter": "*",
-    "@e2e-review/shared": "*"
+    "@gaarutyunov/e2e-review-demo": "*",
+    "@gaarutyunov/e2e-review-reporter": "*",
+    "@gaarutyunov/e2e-review-shared": "*"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.0",

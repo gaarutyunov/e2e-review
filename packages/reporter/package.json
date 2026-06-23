@@ -1,5 +1,5 @@
 {
-  "name": "@e2e-review/reporter",
+  "name": "@gaarutyunov/e2e-review-reporter",
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -10,12 +10,15 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@e2e-review/shared": "*"
+    "@gaarutyunov/e2e-review-shared": "*"
   },
   "peerDependencies": {
     "@playwright/test": ">=1.44"
@@ -24,5 +27,13 @@
     "@playwright/test": "^1.61.0",
     "@types/node": "^22.10.0",
     "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaarutyunov/e2e-review.git",
+    "directory": "packages/reporter"
   }
 }

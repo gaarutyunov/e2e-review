@@ -1,18 +1,20 @@
 {
-  "name": "@e2e-review/server",
+  "name": "@gaarutyunov/e2e-review-server",
   "version": "0.1.0",
   "type": "module",
   "bin": {
     "e2e-review": "./dist/cli.js"
   },
   "main": "./dist/server.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsc -p tsconfig.json --watch"
   },
   "dependencies": {
-    "@e2e-review/shared": "*",
+    "@gaarutyunov/e2e-review-shared": "*",
     "@modelcontextprotocol/sdk": "^1.29.0",
     "express": "^5.2.1",
     "zod": "^3.25.0"
@@ -21,5 +23,13 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.0",
     "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaarutyunov/e2e-review.git",
+    "directory": "packages/server"
   }
 }

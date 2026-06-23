@@ -1,4 +1,4 @@
-import type { RunReport, ManifestEntry, Comment, NewComment } from '@e2e-review/shared';
+import type { RunReport, ManifestEntry, Comment, NewComment } from '@gaarutyunov/e2e-review-shared';
 
 /**
  * A pluggable source of runs + comments. The UI is written against this

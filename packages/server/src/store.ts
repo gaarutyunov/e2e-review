@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { Comment, Manifest, ManifestEntry, NewComment, RunReport } from '@e2e-review/shared';
+import type { Comment, Manifest, ManifestEntry, NewComment, RunReport } from '@gaarutyunov/e2e-review-shared';
 
 /** Reads run reports from a results directory (manifest.json + <id>/run.json). */
 export class RunStore {

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { Comment, ManifestEntry, RunReport } from '@e2e-review/shared';
+import type { Comment, ManifestEntry, RunReport } from '@gaarutyunov/e2e-review-shared';
 import type { DataSource } from '@/data/types';
 import { createDefaultSource, FolderSource, StaticSource } from '@/data/sources';
 import { localCommentStore } from '@/data/localComments';
