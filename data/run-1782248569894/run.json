@@ -1,11 +1,11 @@
 {
-  "id": "run-1781856914027",
-  "createdAt": "2026-06-19T08:15:14.026Z",
+  "id": "run-1782248569894",
+  "createdAt": "2026-06-23T21:02:49.894Z",
   "projectName": "acme-demo",
   "git": {
-    "sha": "a9f314fda71d88cdc518281cc03250cfc4ea22bf",
+    "sha": "d0f8268964ae70afc1c1d4e8144c437cd9bb9feb",
     "branch": "main",
-    "commitUrl": "https://github.com/gaarutyunov/e2e-review/commit/a9f314fda71d88cdc518281cc03250cfc4ea22bf"
+    "commitUrl": "https://github.com/gaarutyunov/e2e-review/commit/d0f8268964ae70afc1c1d4e8144c437cd9bb9feb"
   },
   "environment": {
     "os": "linux",
@@ -30,51 +30,51 @@
             "@demo-failure"
           ],
           "status": "failed",
-          "durationMs": 5836,
-          "startTime": "2026-06-19T08:15:16.065Z",
+          "durationMs": 5877,
+          "startTime": "2026-06-23T21:02:51.986Z",
           "video": {
             "path": "features-locked-account.feature.spec.js-Locked-out-user-sees-a-helpful-message/video.webm",
-            "durationMs": 6240
+            "durationMs": 6320
           },
           "steps": [
             {
               "keyword": "Given",
               "text": "the login page is open",
               "status": "passed",
-              "videoOffsetStartMs": 41,
-              "videoOffsetEndMs": 243,
-              "durationMs": 202
+              "videoOffsetStartMs": 45,
+              "videoOffsetEndMs": 268,
+              "durationMs": 223
             },
             {
               "keyword": "When",
               "text": "I enter the email \"locked@acme.test\"",
               "status": "passed",
-              "videoOffsetStartMs": 248,
-              "videoOffsetEndMs": 271,
-              "durationMs": 23
+              "videoOffsetStartMs": 275,
+              "videoOffsetEndMs": 297,
+              "durationMs": 22
             },
             {
               "keyword": "And",
               "text": "I enter the password \"whatever\"",
               "status": "passed",
-              "videoOffsetStartMs": 275,
-              "videoOffsetEndMs": 288,
-              "durationMs": 13
+              "videoOffsetStartMs": 300,
+              "videoOffsetEndMs": 319,
+              "durationMs": 19
             },
             {
               "keyword": "And",
               "text": "I click the sign in button",
               "status": "passed",
-              "videoOffsetStartMs": 289,
-              "videoOffsetEndMs": 332,
-              "durationMs": 43
+              "videoOffsetStartMs": 320,
+              "videoOffsetEndMs": 373,
+              "durationMs": 53
             },
             {
               "keyword": "Then",
               "text": "I should see the error \"Your account is locked, please contact support\"",
               "status": "failed",
-              "videoOffsetStartMs": 335,
-              "videoOffsetEndMs": 5343,
+              "videoOffsetStartMs": 376,
+              "videoOffsetEndMs": 5384,
               "durationMs": 5008,
               "error": {
                 "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByTestId('login-error')\nExpected substring: \"Your account is locked, please contact support\"\nReceived string:    \"Invalid email or password\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" with timeout 5000ms\n  - waiting for getByTestId('login-error')\n    14 × locator resolved to <div role=\"alert\" data-testid=\"login-error\" class=\"relative w-full rounded-lg border px-4 py-3 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7 border-destructive/50 text-destructive [&>svg]:text-destructive\">…</div>\n       - unexpected value \"Invalid email or password\"\n",
@@ -106,59 +106,59 @@
             "@smoke"
           ],
           "status": "passed",
-          "durationMs": 509,
-          "startTime": "2026-06-19T08:15:23.741Z",
+          "durationMs": 531,
+          "startTime": "2026-06-23T21:02:59.591Z",
           "video": {
             "path": "features-login.feature.spec.js-Successful-login-with-valid-credentials/video.webm",
-            "durationMs": 1240
+            "durationMs": 1320
           },
           "steps": [
             {
               "keyword": "Given",
               "text": "the login page is open",
               "status": "passed",
-              "videoOffsetStartMs": 39,
-              "videoOffsetEndMs": 240,
-              "durationMs": 201
+              "videoOffsetStartMs": 50,
+              "videoOffsetEndMs": 270,
+              "durationMs": 220
             },
             {
               "keyword": "When",
               "text": "I enter the email \"user@acme.test\"",
               "status": "passed",
-              "videoOffsetStartMs": 246,
-              "videoOffsetEndMs": 271,
-              "durationMs": 25
+              "videoOffsetStartMs": 275,
+              "videoOffsetEndMs": 295,
+              "durationMs": 20
             },
             {
               "keyword": "And",
               "text": "I enter the password \"Password123!\"",
               "status": "passed",
-              "videoOffsetStartMs": 274,
-              "videoOffsetEndMs": 288,
-              "durationMs": 14
+              "videoOffsetStartMs": 299,
+              "videoOffsetEndMs": 312,
+              "durationMs": 13
             },
             {
               "keyword": "And",
               "text": "I click the sign in button",
               "status": "passed",
-              "videoOffsetStartMs": 289,
-              "videoOffsetEndMs": 338,
-              "durationMs": 49
+              "videoOffsetStartMs": 314,
+              "videoOffsetEndMs": 361,
+              "durationMs": 47
             },
             {
               "keyword": "Then",
               "text": "I should see the dashboard",
               "status": "passed",
-              "videoOffsetStartMs": 339,
-              "videoOffsetEndMs": 355,
-              "durationMs": 16
+              "videoOffsetStartMs": 362,
+              "videoOffsetEndMs": 375,
+              "durationMs": 13
             },
             {
               "keyword": "And",
               "text": "I should see my name \"Ada Lovelace\"",
               "status": "passed",
-              "videoOffsetStartMs": 357,
-              "videoOffsetEndMs": 368,
+              "videoOffsetStartMs": 377,
+              "videoOffsetEndMs": 388,
               "durationMs": 11
             }
           ]
@@ -169,11 +169,11 @@
           "featureFile": "features/login.feature.spec.js",
           "tags": [],
           "status": "passed",
-          "durationMs": 421,
-          "startTime": "2026-06-19T08:15:24.397Z",
+          "durationMs": 462,
+          "startTime": "2026-06-23T21:03:00.283Z",
           "video": {
             "path": "features-login.feature.spec.js-Login-fails-with-wrong-credentials/video.webm",
-            "durationMs": 1160
+            "durationMs": 1200
           },
           "steps": [
             {
@@ -181,40 +181,40 @@
               "text": "the login page is open",
               "status": "passed",
               "videoOffsetStartMs": 3,
-              "videoOffsetEndMs": 179,
-              "durationMs": 176
+              "videoOffsetEndMs": 199,
+              "durationMs": 196
             },
             {
               "keyword": "When",
               "text": "I enter the email \"user@acme.test\"",
               "status": "passed",
-              "videoOffsetStartMs": 181,
-              "videoOffsetEndMs": 201,
-              "durationMs": 20
+              "videoOffsetStartMs": 201,
+              "videoOffsetEndMs": 226,
+              "durationMs": 25
             },
             {
               "keyword": "And",
               "text": "I enter the password \"wrong-password\"",
               "status": "passed",
-              "videoOffsetStartMs": 202,
-              "videoOffsetEndMs": 216,
-              "durationMs": 14
+              "videoOffsetStartMs": 227,
+              "videoOffsetEndMs": 243,
+              "durationMs": 16
             },
             {
               "keyword": "And",
               "text": "I click the sign in button",
               "status": "passed",
-              "videoOffsetStartMs": 216,
-              "videoOffsetEndMs": 256,
-              "durationMs": 40
+              "videoOffsetStartMs": 244,
+              "videoOffsetEndMs": 283,
+              "durationMs": 39
             },
             {
               "keyword": "Then",
               "text": "I should see the error \"Invalid email or password\"",
               "status": "passed",
-              "videoOffsetStartMs": 258,
-              "videoOffsetEndMs": 261,
-              "durationMs": 3
+              "videoOffsetStartMs": 285,
+              "videoOffsetEndMs": 291,
+              "durationMs": 6
             }
           ]
         }
@@ -230,8 +230,8 @@
           "featureFile": "features/register.feature.spec.js",
           "tags": [],
           "status": "passed",
-          "durationMs": 565,
-          "startTime": "2026-06-19T08:15:24.844Z",
+          "durationMs": 568,
+          "startTime": "2026-06-23T21:03:00.772Z",
           "video": {
             "path": "features-register.feature.spec.js-Register-a-new-account/video.webm",
             "durationMs": 1320
@@ -242,39 +242,39 @@
               "text": "the login page is open",
               "status": "passed",
               "videoOffsetStartMs": 5,
-              "videoOffsetEndMs": 176,
-              "durationMs": 171
+              "videoOffsetEndMs": 197,
+              "durationMs": 192
             },
             {
               "keyword": "When",
               "text": "I click the register link",
               "status": "passed",
-              "videoOffsetStartMs": 178,
-              "videoOffsetEndMs": 252,
-              "durationMs": 74
+              "videoOffsetStartMs": 199,
+              "videoOffsetEndMs": 270,
+              "durationMs": 71
             },
             {
               "keyword": "And",
               "text": "I register with name \"Grace Hopper\", organization \"Acme Corp\", email \"grace@acme.test\" and password \"Password123!\"",
               "status": "passed",
-              "videoOffsetStartMs": 255,
-              "videoOffsetEndMs": 346,
-              "durationMs": 91
+              "videoOffsetStartMs": 274,
+              "videoOffsetEndMs": 380,
+              "durationMs": 106
             },
             {
               "keyword": "Then",
               "text": "I should see the dashboard",
               "status": "passed",
-              "videoOffsetStartMs": 346,
-              "videoOffsetEndMs": 374,
-              "durationMs": 28
+              "videoOffsetStartMs": 381,
+              "videoOffsetEndMs": 411,
+              "durationMs": 30
             },
             {
               "keyword": "And",
               "text": "I should see my name \"Grace Hopper\"",
               "status": "passed",
-              "videoOffsetStartMs": 375,
-              "videoOffsetEndMs": 381,
+              "videoOffsetStartMs": 412,
+              "videoOffsetEndMs": 418,
               "durationMs": 6
             }
           ]
@@ -291,92 +291,92 @@
           "featureFile": "features/reset-password.feature.spec.js",
           "tags": [],
           "status": "passed",
-          "durationMs": 622,
-          "startTime": "2026-06-19T08:15:25.543Z",
+          "durationMs": 700,
+          "startTime": "2026-06-23T21:03:01.368Z",
           "video": {
             "path": "features-reset-password.feature.spec.js-Reset-the-password-and-sign-in-with-the-new-one/video.webm",
-            "durationMs": 1400
+            "durationMs": 1480
           },
           "steps": [
             {
               "keyword": "Given",
               "text": "the login page is open",
               "status": "passed",
-              "videoOffsetStartMs": 3,
-              "videoOffsetEndMs": 172,
-              "durationMs": 169
+              "videoOffsetStartMs": 4,
+              "videoOffsetEndMs": 185,
+              "durationMs": 181
             },
             {
               "keyword": "When",
               "text": "I click the forgot password link",
               "status": "passed",
-              "videoOffsetStartMs": 174,
-              "videoOffsetEndMs": 231,
-              "durationMs": 57
+              "videoOffsetStartMs": 187,
+              "videoOffsetEndMs": 256,
+              "durationMs": 69
             },
             {
               "keyword": "And",
               "text": "I request a password reset for \"user@acme.test\"",
               "status": "passed",
-              "videoOffsetStartMs": 232,
-              "videoOffsetEndMs": 285,
-              "durationMs": 53
+              "videoOffsetStartMs": 258,
+              "videoOffsetEndMs": 319,
+              "durationMs": 61
             },
             {
               "keyword": "And",
               "text": "I set the new password to \"NewPassword123!\"",
               "status": "passed",
-              "videoOffsetStartMs": 286,
-              "videoOffsetEndMs": 350,
+              "videoOffsetStartMs": 321,
+              "videoOffsetEndMs": 385,
               "durationMs": 64
             },
             {
               "keyword": "Then",
               "text": "I should see the reset success message",
               "status": "passed",
-              "videoOffsetStartMs": 351,
-              "videoOffsetEndMs": 354,
-              "durationMs": 3
+              "videoOffsetStartMs": 386,
+              "videoOffsetEndMs": 390,
+              "durationMs": 4
             },
             {
               "keyword": "When",
               "text": "I go back to sign in",
               "status": "passed",
-              "videoOffsetStartMs": 354,
-              "videoOffsetEndMs": 407,
-              "durationMs": 53
+              "videoOffsetStartMs": 390,
+              "videoOffsetEndMs": 461,
+              "durationMs": 71
             },
             {
               "keyword": "And",
               "text": "I enter the email \"user@acme.test\"",
               "status": "passed",
-              "videoOffsetStartMs": 408,
-              "videoOffsetEndMs": 418,
-              "durationMs": 10
+              "videoOffsetStartMs": 462,
+              "videoOffsetEndMs": 471,
+              "durationMs": 9
             },
             {
               "keyword": "And",
               "text": "I enter the password \"NewPassword123!\"",
               "status": "passed",
-              "videoOffsetStartMs": 419,
-              "videoOffsetEndMs": 427,
-              "durationMs": 8
+              "videoOffsetStartMs": 472,
+              "videoOffsetEndMs": 482,
+              "durationMs": 10
             },
             {
               "keyword": "And",
               "text": "I click the sign in button",
               "status": "passed",
-              "videoOffsetStartMs": 427,
-              "videoOffsetEndMs": 467,
-              "durationMs": 40
+              "videoOffsetStartMs": 483,
+              "videoOffsetEndMs": 518,
+              "durationMs": 35
             },
             {
               "keyword": "Then",
               "text": "I should see the dashboard",
               "status": "passed",
-              "videoOffsetStartMs": 467,
-              "videoOffsetEndMs": 497,
-              "durationMs": 30
+              "videoOffsetStartMs": 518,
+              "videoOffsetEndMs": 534,
+              "durationMs": 16
             }
           ]
         }
