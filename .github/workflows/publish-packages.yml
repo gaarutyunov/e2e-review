@@ -49,7 +49,9 @@ jobs:
         run: |
           npm run build:shared
           npm run build:reporter
-          npm run build:server
+          # build:server-dist also builds the review SPA (server data-mode) and
+          # copies it into packages/server/dist/review so the server ships the UI.
+          npm run build:server-dist
 
       - name: Publish to GitHub Packages
         env:

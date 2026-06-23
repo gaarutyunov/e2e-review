@@ -19,8 +19,12 @@ export interface ServerOptions {
 
 export function createApp(options: ServerOptions) {
   const dataDir = path.resolve(options.dataDir);
+  // Prefer the review SPA bundled into the published package (dist/review, built
+  // in server data-mode); fall back to the monorepo build path for workspace dev.
+  const bundledReview = path.resolve(__dirname, 'review');
   const reviewDist =
-    options.reviewDist ?? path.resolve(__dirname, '../../../apps/review/dist');
+    options.reviewDist ??
+    (existsSync(bundledReview) ? bundledReview : path.resolve(__dirname, '../../../apps/review/dist'));
 
   const runStore = new RunStore(dataDir);
   const commentStore = new CommentStore(dataDir);
