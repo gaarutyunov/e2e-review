@@ -12,15 +12,15 @@
     "e2e"
   ],
   "scripts": {
-    "build:shared": "npm run build -w @e2e-review/shared",
-    "build:reporter": "npm run build -w @e2e-review/reporter",
-    "build:review": "npm run build -w @e2e-review/review",
-    "build:server": "npm run build -w @e2e-review/server",
+    "build:shared": "npm run build -w @gaarutyunov/e2e-review-shared",
+    "build:reporter": "npm run build -w @gaarutyunov/e2e-review-reporter",
+    "build:review": "npm run build -w @gaarutyunov/e2e-review-review",
+    "build:server": "npm run build -w @gaarutyunov/e2e-review-server",
     "build": "npm run build:shared && npm run build:reporter && npm run build:review && npm run build:server",
-    "build:demo": "npm run build -w @e2e-review/demo",
-    "dev:demo": "npm run dev -w @e2e-review/demo",
-    "dev:review": "npm run dev -w @e2e-review/review",
-    "test:e2e": "npm run test -w @e2e-review/e2e",
+    "build:demo": "npm run build -w @gaarutyunov/e2e-review-demo",
+    "dev:demo": "npm run dev -w @gaarutyunov/e2e-review-demo",
+    "dev:review": "npm run dev -w @gaarutyunov/e2e-review-review",
+    "test:e2e": "npm run test -w @gaarutyunov/e2e-review-e2e",
     "sample-data": "node scripts/generate-sample-data.mjs e2e-results",
     "serve": "node packages/server/dist/cli.js serve --dir ./e2e-results"
   }

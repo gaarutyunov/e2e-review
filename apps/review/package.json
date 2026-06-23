@@ -1,5 +1,5 @@
 {
-  "name": "@e2e-review/review",
+  "name": "@gaarutyunov/e2e-review-review",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@e2e-review/shared": "*",
+    "@gaarutyunov/e2e-review-shared": "*",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",

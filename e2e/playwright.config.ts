@@ -19,7 +19,7 @@ export default defineConfig({
     ['html', { open: 'never', outputFolder: 'playwright-report' }],
     // Our custom reporter writes the video-aligned run.json + manifest.json
     // consumed by the review app, into the repo-root e2e-results/ folder.
-    ['@e2e-review/reporter', { outputDir: '../e2e-results', projectName: 'acme-demo' }],
+    ['@gaarutyunov/e2e-review-reporter', { outputDir: '../e2e-results', projectName: 'acme-demo' }],
   ],
   use: {
     baseURL: 'http://localhost:5173',
@@ -29,7 +29,7 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'npm run dev -w @e2e-review/demo',
+    command: 'npm run dev -w @gaarutyunov/e2e-review-demo',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

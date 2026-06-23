@@ -1,4 +1,4 @@
-import type { RunStatus, StepStatus } from '@e2e-review/shared';
+import type { RunStatus, StepStatus } from '@gaarutyunov/e2e-review-shared';
 
 /** Format milliseconds as m:ss.t (e.g. 1:07.4). */
 export function formatMs(ms: number): string {

@@ -1,0 +1,60 @@
+name: Publish packages
+
+# Publishes the public @gaarutyunov/e2e-review-* packages to GitHub Packages
+# when a version tag (vX.Y.Z) is pushed. The tag drives the published version.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (without leading v), e.g. 0.1.0'
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@gaarutyunov'
+
+      - name: Resolve version
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF_NAME#v}"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing version $VERSION"
+
+      - name: Install
+        run: npm ci
+
+      - name: Set workspace versions from tag
+        run: npm version "${{ steps.ver.outputs.version }}" --workspaces --no-git-tag-version --allow-same-version
+
+      - name: Build publishable packages
+        run: |
+          npm run build:shared
+          npm run build:reporter
+          npm run build:server
+
+      - name: Publish to GitHub Packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm publish -w @gaarutyunov/e2e-review-shared
+          npm publish -w @gaarutyunov/e2e-review-reporter
+          npm publish -w @gaarutyunov/e2e-review-server

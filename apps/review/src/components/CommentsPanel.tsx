@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Comment, ReportStep } from '@e2e-review/shared';
+import type { Comment, ReportStep } from '@gaarutyunov/e2e-review-shared';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';

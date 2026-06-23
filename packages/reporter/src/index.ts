@@ -22,7 +22,7 @@ import {
   emptySummary,
   isGherkinStepTitle,
   scenarioId,
-} from '@e2e-review/shared';
+} from '@gaarutyunov/e2e-review-shared';
 
 export interface ReporterOptions {
   /** Where to write run folders + manifest.json. Resolved from cwd. */

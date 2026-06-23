@@ -1,4 +1,4 @@
-import type { ReportStep } from '@e2e-review/shared';
+import type { ReportStep } from '@gaarutyunov/e2e-review-shared';
 import { cn } from '@/lib/utils';
 import { formatMs } from '@/lib/format';
 

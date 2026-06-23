@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Comment, RunReport, Scenario } from '@e2e-review/shared';
+import type { Comment, RunReport, Scenario } from '@gaarutyunov/e2e-review-shared';
 import { StepTimeline } from './StepTimeline';
 import { VideoTimeline } from './VideoTimeline';
 import { CommentsPanel } from './CommentsPanel';
