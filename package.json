@@ -22,6 +22,7 @@
     "dev:review": "npm run dev -w @gaarutyunov/e2e-review-review",
     "test:e2e": "npm run test -w @gaarutyunov/e2e-review-e2e",
     "sample-data": "node scripts/generate-sample-data.mjs e2e-results",
-    "serve": "node packages/server/dist/cli.js serve --dir ./e2e-results"
+    "serve": "node packages/server/dist/cli.js serve --dir ./e2e-results",
+    "build:server-dist": "npm run build:shared && VITE_DATA_MODE=server VITE_BASE=/ npm run build -w @gaarutyunov/e2e-review-review && npm run build:server && rm -rf packages/server/dist/review && cp -r apps/review/dist packages/server/dist/review"
   }
 }
